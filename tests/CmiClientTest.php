@@ -52,8 +52,11 @@ final class CmiClientTest extends TestCase
             'tel' => '0021201020304', // YOUR PHONE APPEAR IN CMI PLATEFORM NOT REQUIRED
             'amount' => '10.60', // RETRIEVE AMOUNT WITH METHOD POST
             'CallbackURL' => $base_url.'/callback.php', // CALLBACK
+
+            'rnd' => '0.29594500 1693675195', // mock random microtime()
         ]);
         $client->generateHash();
         $this->assertNotNull($client->Hash);
+        $this->assertSame($client->Hash, 'AyLnNPwao8EnbcrLo0AfAF5LGzRBfQfSpmeUIyhes+uUR8+DbhpbxT/JgXqTQYOcnpkB+kfD2rYZ5S8FpT08AQ==');
     }
 }
