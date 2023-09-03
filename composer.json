@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mehdirochdi\\CMI\\": "lib/"
+            "CMI\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CMI\\": [
+            "Tests\\": [
                 "tests/"
             ]
         }
