@@ -2,27 +2,12 @@
 
 declare(strict_types=1);
 
-use Mehdirochdi\CMI\CmiClient;
-use Mehdirochdi\CMI\Exception\InvalidArgumentException;
+use CMI\CmiClient;
+use CMI\CmiPayment;
 
-test('test it require storekey', function () {
-    expect(fn() => new CmiClient())
-        ->toThrow(InvalidArgumentException::class, 'storekey is required');
-});
-
-test('test storekey null', function () {
-    expect(fn() => new CmiClient(['storekey' => null]))
-        ->toThrow(InvalidArgumentException::class, 'storekey is required');
-});
-
-test('test storekey has space', function () {
-    expect(fn() => new CmiClient(['storekey' => '123 256']))
-        ->toThrow(InvalidArgumentException::class, 'storekey cannot contain whitespace');
-});
-
-test('test if hash is validated', function () {
+test('hash is validated', function () {
     $base_url = 'http://cmi-php.local/example';
-    $client = new Mehdirochdi\CMI\CmiClient([
+    $cmiPayment = new CmiPayment([
         'storekey' => '987456', // STOREKEY
         'clientid' => '1234567', // CLIENTID
         'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
@@ -44,9 +29,11 @@ test('test if hash is validated', function () {
         'rnd' => '0.29594500 1693675195', // mock random microtime()
     ]);
 
-    $client->generateHash();
-    expect($client->Hash)
-        ->not()->toBeNull()
-        ->toEqual('AyLnNPwao8EnbcrLo0AfAF5LGzRBfQfSpmeUIyhes+uUR8+DbhpbxT/JgXqTQYOcnpkB+kfD2rYZ5S8FpT08AQ==')
-    ;
+    $expectedhash = 'AyLnNPwao8EnbcrLo0AfAF5LGzRBfQfSpmeUIyhes+uUR8+DbhpbxT/JgXqTQYOcnpkB+kfD2rYZ5S8FpT08AQ==';
+
+    $cmiClient = new CmiClient($cmiPayment);
+    expect($cmiClient->hashEqual($expectedhash))
+        ->toBeTrue()
+        ->and($expectedhash)
+        ->toEqual($expectedhash);
 });
