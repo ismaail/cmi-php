@@ -1,5 +1,5 @@
 {
-    "name": "mehdirochdi/cmi-payment-php",
+    "name": "ismaail/cmi-payment-php",
     "description": "PHP package to communicate with the CMI payment plateform in Morocco",
     "keywords": [
         "cmi",
@@ -21,6 +21,9 @@
             "name": "mehdi rochdi",
             "email": "mehdi.rochdi@gmail.com",
             "homepage": "https://github.com/mehdirochdi/cmi-php/graphs/contributors"
+        },{
+            "name": "ismaail",
+            "email": "contact@ismaail.com"
         }
     ],
     "require": {
