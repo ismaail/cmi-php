@@ -1,1 +1,0 @@
-{"version":1,"defects":[],"times":{"CmiClientTest::test_it_require_storekey":0.002,"CmiClientTest::test_storekey_null":0,"CmiClientTest::test_storekey_has_space":0,"CmiClientTest::test_if_hash_is_validated":0.001}}
