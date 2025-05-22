@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true">
-  <coverage>
-    <include>
-      <directory>lib</directory>
-    </include>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true">
   <php>
     <env name="IS_RUNNING_PHPUNIT" value="true"/>
   </php>
@@ -13,4 +8,9 @@
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory>lib</directory>
+    </include>
+  </source>
 </phpunit>
