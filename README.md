@@ -1,42 +1,38 @@
-# CMI PHP Payment bindings
+# CMI PHP Payment
+
+![Payment page](./docs/images/logo-cmi-open.png)
 
 CMI PHP PAYMENT is an open source **PHP payment handling** library. it provides an easier way to communicate with CMI PAYMENT PLATEFORM **[cmi.co.ma](https://www.cmi.co.ma/fr/solutions-paiement-carte-paiement-ligne/ecommerce)** in morocco.
 
 The class is written OOP to make easier to communicate and understand how CMI work.
 
-NB: The small library follows the FIG standard **PSR-4** .
-
 ## System Requirements
 
-cmi-php requires the following components to work correctly
+**cmi-php** requires the following components to work correctly:
 
-- PHP>=8.1
-- [cUrl](https://www.php.net/manual/en/book.curl.php) Extension
-- [mbstring](https://www.php.net/manual/en/book.mbstring.php) Extension
+- PHP>=8.2
 
 
 ## Composer Installation
 
 You can install the bindings via [composer](https://getcomposer.org/). Run the following command:
 ```shell
-composer require mehdirochdi/cmi-payment-php
+composer require ismaail/cmi-payment-php
 ```
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading)
 ```shell
 require_once('vendor/autoload.php');
 ```
-## Manual Installation
 
-If you do not wish to use Composer for some reason, you can usethe bindings, include the init.php file.
-```shell
-require_once('/path/to/cmi-php/init.php');
-```
+<br>
+
+---
 
 ## Getting Started
 
 Example amount text fields `example/formRequest.php`:
 
-```php title="example/formRequest.php"
+```php
 ...
     <h1>Payment form CMI</h1>
     <form method="post" action="/example/process.php">
@@ -48,7 +44,7 @@ Example amount text fields `example/formRequest.php`:
 ```
 Keeping mind that `storekey` and `clientid` are given by CMI, you should contact them **[cmi.co.ma](https://www.cmi.co.ma/fr/solutions-paiement-carte-paiement-ligne/ecommerce)**
 
-```php title="example/process.php"
+```php
 <?php
 // REQUIRED PARAMS
 $client = new Mehdirochdi\CMI\CmiClient([
@@ -68,7 +64,7 @@ $client = new Mehdirochdi\CMI\CmiClient([
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
 ?>
 ```
-![Payment page](https://osmentalent.com/payment-page.png)
+![Payment page](./docs/images/cmi-payment-page.jpg)
 
 
 ## Basic test card numbers
@@ -78,15 +74,19 @@ Branch : `visa`, PAN: `4000000000000010`, Expired date: `make any date` CVC: `00
 
 Branch : `MasterCard`, PAN: `5453010000066100`, Expired date: `make any date` CVC: `000`
 
+<br>
+
+---
+
 ## 3D Secure test card numbers
 The following card information try to tests local payments such as Strong Customer Authentication **SCA**
 
 Branch : `MasterCard`, PAN: `5191630100004896`, Authentication code: `123` Expired date: `make any date` CVC: `000`
 
-![Payment page](https://osmentalent.com/3dsecure.png)
+![Payment page](./docs/images/3dsecure-logo-min.png)
 
 ## Optional Params Example
-```php title="example/process.php"
+```php
 <?php
 // REQUIRED PARAMS
 $client = new Mehdirochdi\CMI\CmiClient([
