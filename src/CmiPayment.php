@@ -6,7 +6,7 @@ namespace CMI;
 
 use CMI\Assert\Assert;
 use CMI\Assert\ValidationException;
-use CMI\Assert\InvalidArgumentException;
+use InvalidArgumentException;
 
 class CmiPayment
 {

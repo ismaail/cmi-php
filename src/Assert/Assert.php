@@ -2,6 +2,8 @@
 
 namespace CMI\Assert;
 
+use InvalidArgumentException;
+
 /**
  * @see https://github.com/webmozarts/assert/blob/master/src/Assert.php
  */
