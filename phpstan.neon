@@ -1,0 +1,19 @@
+parameters:
+	phpVersion:
+		min: 80200
+		max: 80400
+
+	paths:
+		- src
+
+	excludePaths:
+		analyseAndScan:
+			- tests/*
+
+	# Level 9 is the highest level
+	level: 6
+
+	ignoreErrors:
+		- '#no value type specified in iterable type array#'
+
+	reportUnmatchedIgnoredErrors: false
