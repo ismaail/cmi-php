@@ -23,10 +23,7 @@
         }
     ],
     "require": {
-        "php": "^8.2|^8.3|^8.4",
-        "ext-curl": "*",
-        "ext-json": "*",
-        "ext-mbstring": "*"
+        "php": "^8.2|^8.3|^8.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.13",
