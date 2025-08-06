@@ -1,6 +1,6 @@
 <?php
 
-namespace CMI\Assert;
+namespace CMI\Validator;
 
 use Exception;
 use Throwable;
