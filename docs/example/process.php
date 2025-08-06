@@ -1,12 +1,10 @@
 <?php
 
-use CMI\CmiPage;
-
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 $base_url = 'https://domain.local/example';
 
-$client = new CMI\CmiClient([
+$client = new CMI\CmiClient(new CMI\CmiPayment([
     'storekey' => '', // STOREKEY
     'clientid' => '', // CLIENTID
     'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
@@ -24,8 +22,8 @@ $client = new CMI\CmiClient([
     'tel' => '0021201020304', // YOUR PHONE APPEAR IN CMI PLATEFORM NOT REQUIRED
     'amount' => $_POST['amount'], // RETRIEVE AMOUNT WITH METHOD POST
     'CallbackURL' => $base_url . '/callback.php', // CALLBACK
-]);
+]));
 
-$cmiPage = new CmiPage($client);
+$cmiPage = new CMI\CmiPage($client);
 
 echo $cmiPage->buildRedirectForm();
