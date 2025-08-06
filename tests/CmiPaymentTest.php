@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use CMI\CmiPayment;
-use CMI\Assert\ValidationException;
+use CMI\Validator\ValidationException;
 
 test('required attributes validation throws validation exception', function (array $attributes, array $expectedErrors): void {
     expect(fn() => new CmiPayment($attributes))->toThrow(function (ValidationException $exception) use ($expectedErrors) {
@@ -63,10 +63,10 @@ test('required attributes validation throws validation exception', function (arr
             'amount' => 'value must be a numeric',
             'currency' => 'value must be a numeric',
             'oid' => 'value must contain letters and digits only',
-            'okUrl' => 'value cannot be empty string',
-            'failUrl' => 'value cannot be empty string',
+            'okUrl' => 'value must be a valid url',
+            'failUrl' => 'value must be a valid url',
             'lang' => 'value cannot be empty string',
-            'email' => 'value cannot be empty string',
+            'email' => 'value must be a valid email',
             'BillToName' => 'value cannot be empty string',
             'hashAlgorithm' => 'value must be a string',
         ],

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace CMI;
 
-use CMI\Assert\Assert;
-use CMI\Assert\ValidationException;
-use InvalidArgumentException;
+use CMI\Validator\ValidationException;
+use CMI\Validator\Validator;
 
 class CmiPayment
 {
@@ -15,7 +14,7 @@ class CmiPayment
     /**
      * Languages supported by CMI
      *
-     * @const array
+     * @const list<string>
      */
     private const LANGS = ['ar', 'fr', 'en'];
 
@@ -52,146 +51,26 @@ class CmiPayment
      *
      * @throws ValidationException
      */
-    private function assertAttributes($attributes): void
+    private function assertAttributes(array $attributes): void
     {
-        $errors = [];
+        $rules = [
+            'storekey' => ['required', 'string', 'not_empty', 'alnum'],
+            'clientid' => ['required', 'string', 'not_empty', 'alnum'],
+            'storetype' => ['required', 'string', 'not_empty'],
+            'trantype' => ['required', 'string', 'not_empty'],
+            'amount' => ['required', 'numeric'],
+            'currency' => ['required', 'numeric'],
+            'oid' => ['required', 'alnum'],
+            'okUrl' => ['required', 'url'],
+            'failUrl' => ['required', 'url'],
+            'lang' => ['required', 'string', 'not_empty', ['in', ...self::LANGS]],
+            'email' => ['required', 'email'],
+            'BillToName' => ['required', 'string', 'not_empty'],
+            'hashAlgorithm' => ['required', 'string', 'not_empty'],
+        ];
 
-        // storekey
-        try {
-            $value = $attributes['storekey'] ?? null;
-
-            Assert::notNull($value);
-            Assert::stringNotEmpty($value);
-            Assert::alnum($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['storekey'] = $exception->getMessage();
-        }
-
-        // clientid
-        try {
-            $value = $attributes['clientid'] ?? null;
-
-            Assert::notNull($value);
-            Assert::stringNotEmpty($value);
-            Assert::alnum($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['clientid'] = $exception->getMessage();
-        }
-
-        // storetype (has default value if not provided)
-        try {
-            $value = $attributes['storetype'];
-
-            Assert::notNull($value);
-            Assert::string($value);
-            Assert::stringNotEmpty($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['storetype'] = $exception->getMessage();
-        }
-
-        // trantype (has default value if not provided)
-        try {
-            $value = $attributes['trantype'];
-
-            Assert::notNull($value);
-            Assert::string($value);
-            Assert::stringNotEmpty($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['trantype'] = $exception->getMessage();
-        }
-
-        // amount
-        try {
-            $value = $attributes['amount'] ?? null;
-
-            Assert::notNull($value);
-            Assert::numeric($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['amount'] = $exception->getMessage();
-        }
-
-        // currency (has default value if not provided)
-        try {
-            $value = $attributes['currency'];
-
-            Assert::notNull($value);
-            Assert::numeric($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['currency'] = $exception->getMessage();
-        }
-
-        // oid
-        try {
-            $value = $attributes['oid'] ?? null;
-
-            Assert::notNull($value);
-            Assert::alnum($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['oid'] = $exception->getMessage();
-        }
-
-        // okUrl
-        try {
-            $value = $attributes['okUrl'] ?? null;
-
-            Assert::notNull($value);
-            Assert::url($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['okUrl'] = $exception->getMessage();
-        }
-
-        // failUrl
-        try {
-            $value = $attributes['failUrl'] ?? null;
-
-            Assert::notNull($value);
-            Assert::url($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['failUrl'] = $exception->getMessage();
-        }
-
-        // lang (has default value if not provided)
-        try {
-            $value = $attributes['lang'];
-
-            Assert::notNull($value);
-            Assert::stringNotEmpty($value);
-            Assert::inArray($value, self::LANGS);
-        } catch (InvalidArgumentException $exception) {
-            $errors['lang'] = $exception->getMessage();
-        }
-
-        // email
-        try {
-            $value = $attributes['email'] ?? null;
-
-            Assert::notNull($value);
-            Assert::email($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['email'] = $exception->getMessage();
-        }
-
-        // BillToName
-        try {
-            $value = $attributes['BillToName'] ?? null;
-
-            Assert::notNull($value);
-            Assert::string($value);
-            Assert::stringNotEmpty($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['BillToName'] = $exception->getMessage();
-        }
-
-        // hashAlgorithm (has default value if not provided)
-        try {
-            $value = $attributes['hashAlgorithm'];
-
-            Assert::notNull($value);
-            Assert::string($value);
-            Assert::stringNotEmpty($value);
-        } catch (InvalidArgumentException $exception) {
-            $errors['hashAlgorithm'] = $exception->getMessage();
-        }
+        $validator = new Validator($rules);
+        $errors = $validator->validate($attributes);
 
         if (! empty($errors)) {
             throw new ValidationException($errors);
