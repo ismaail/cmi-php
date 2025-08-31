@@ -26,8 +26,7 @@
         "php": "^8.2|^8.3|^8.4"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.13",
-        "pestphp/pest": "^1.23|^3.8",
+        "pestphp/pest": "^1.23|^4.0",
         "phpstan/phpstan": "^2.1",
         "laravel/pint": "^1.24"
     },
