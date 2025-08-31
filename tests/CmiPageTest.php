@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CmiTest;
 
 use CMI\CmiClient;
@@ -42,5 +44,6 @@ test('it generate redirect form', function () {
             HTML;
 
     expect($cmiPage->buildRedirectForm())
-        ->toEqual($html);
+        ->toEqual($html)
+    ;
 });

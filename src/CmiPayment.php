@@ -37,7 +37,7 @@ class CmiPayment
             'lang' => 'fr',
             'hashAlgorithm' => 'ver3',
             'encoding' => 'UTF-8', // OPTIONAL
-            'refreshtime' => '5' // OPTIONAL
+            'refreshtime' => '5', // OPTIONAL
         ];
     }
 

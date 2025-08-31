@@ -8,9 +8,7 @@ use InvalidArgumentException;
 
 class Validator
 {
-    public function __construct(private readonly array $rules)
-    {
-    }
+    public function __construct(private readonly array $rules) {}
 
     public function validate(array $data): array
     {
@@ -90,7 +88,7 @@ class Validator
 
     private function validateAlnum(mixed $value): void
     {
-        if (!is_string($value) || !preg_match('/^[a-zA-Z0-9]+$/', $value)) {
+        if (! is_string($value) || ! preg_match('/^[a-zA-Z0-9]+$/', $value)) {
             throw new InvalidArgumentException('value must contain letters and digits only');
         }
     }

@@ -6,7 +6,7 @@ use CMI\CmiPayment;
 use CMI\Validator\ValidationException;
 
 test('required attributes validation throws validation exception', function (array $attributes, array $expectedErrors): void {
-    expect(fn() => new CmiPayment($attributes))->toThrow(function (ValidationException $exception) use ($expectedErrors) {
+    expect(fn () => new CmiPayment($attributes))->toThrow(function (ValidationException $exception) use ($expectedErrors) {
         expect($exception->getMessage())->toBe('Invalid CMI attributes');
         expect($exception->getErrors())->toMatchArray($expectedErrors);
     });
