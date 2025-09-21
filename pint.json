@@ -1,0 +1,34 @@
+{
+	"preset": "laravel",
+	"rules": {
+		"cast_spaces": {
+			"space": "none"
+		},
+		"concat_space": {
+			"spacing": "one"
+		},
+		"declare_strict_types": true,
+		"method_argument_space": {
+			"on_multiline": "ignore"
+		},
+		"multiline_whitespace_before_semicolons": {
+			"strategy": "new_line_for_chained_calls"
+		},
+		"new_with_parentheses": {
+			"anonymous_class": false,
+			"named_class": true
+		},
+		"phpdoc_align": {
+			"align": "left"
+		},
+		"single_line_comment_spacing": false,
+		"single_trait_insert_per_statement": true,
+		"types_spaces": {
+			"space": "none"
+		},
+		"yoda_style": true
+	},
+	"exclude": [
+		"docs"
+	]
+}
