@@ -8,8 +8,15 @@ use InvalidArgumentException;
 
 class Validator
 {
+    /**
+     * @param array<string, array<int, string|array<int, mixed>>> $rules
+     */
     public function __construct(private readonly array $rules) {}
 
+    /**
+     * @param array<string, string> $data
+     * @return array<string, string>
+     */
     public function validate(array $data): array
     {
         $errors = [];
@@ -36,6 +43,9 @@ class Validator
         return $errors;
     }
 
+    /**
+     * @param array<int, mixed> $parameters
+     */
     private function validateRule(string $rule, mixed $value, array $parameters = []): void
     {
         match ($rule) {
@@ -93,6 +103,9 @@ class Validator
         }
     }
 
+    /**
+     * @param array<int, mixed> $haystack
+     */
     private function validateIn(mixed $value, array $haystack): void
     {
         if (! in_array($value, $haystack, true)) {

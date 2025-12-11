@@ -9,6 +9,9 @@ use CMI\Validator\Validator;
 
 class CmiPayment
 {
+    /**
+     * @var array<string, string|float>
+     */
     private array $attributes;
 
     /**
@@ -18,6 +21,11 @@ class CmiPayment
      */
     private const LANGS = ['ar', 'fr', 'en'];
 
+    /**
+     * @param array<string, string|float> $attributes
+     *
+     * @throws ValidationException
+     */
     public function __construct(array $attributes = [])
     {
         $attributes = array_merge($this->getDefaultAttributes(), $attributes);
@@ -27,6 +35,9 @@ class CmiPayment
         $this->attributes = $attributes;
     }
 
+    /**
+     * @return array<string, string|float>
+     */
     private function getDefaultAttributes(): array
     {
         return [
@@ -41,6 +52,9 @@ class CmiPayment
         ];
     }
 
+    /**
+     * @return array<string, string|float>
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
