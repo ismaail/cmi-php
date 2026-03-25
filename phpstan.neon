@@ -11,9 +11,9 @@ parameters:
 			- tests/*
 
 	# Level 9 is the highest level
-	level: 6
+	level: 9
 
 	ignoreErrors:
-		- '#no value type specified in iterable type array#'
+		#- '#no value type specified in iterable type array#'
 
 	reportUnmatchedIgnoredErrors: false
