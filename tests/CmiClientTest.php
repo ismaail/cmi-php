@@ -5,7 +5,7 @@ declare(strict_types=1);
 use CMI\CmiClient;
 use CMI\CmiPayment;
 
-test('test if hash is validated', function () {
+it('generate a validated hash.', function () {
     $baseUrl = 'http://cmi-php.local/example';
     $client = new CmiClient(new CmiPayment([
         'storekey' => '987456',
@@ -14,15 +14,15 @@ test('test if hash is validated', function () {
         'shopurl' => $baseUrl,
         'okUrl' => "$baseUrl/okFail.php",
         'failUrl' => "$baseUrl/okFail.php",
-        'email' => 'mehdi.rochdi@gmail.com',
-        'BillToName' => 'mehdi rochdi',
+        'email' => 'example@gmail.com',
+        'BillToName' => 'Jhon Doe',
         'BillToCompany' => 'company name',
-        'BillToStreet12' => '100 rue adress',
-        'BillToCity' => 'casablanca',
-        'BillToStateProv' => 'Maarif Casablanca',
-        'BillToPostalCode' => '20230',
-        'BillToCountry' => '504',
-        'tel' => '0021201020304',
+        'BillToStreet12' => '123 main Street',
+        'BillToCity' => 'City Name',
+        'BillToStateProv' => 'State Name',
+        'BillToPostalCode' => '10000',
+        'BillToCountry' => '100',
+        'tel' => '001020304',
         'amount' => '10.60',
         'CallbackURL' => "$baseUrl/callback.php",
 
@@ -32,6 +32,6 @@ test('test if hash is validated', function () {
     $client->generateHash();
     expect($client->generateHash())
         ->not()->toBeNull()
-        ->toEqual('AyLnNPwao8EnbcrLo0AfAF5LGzRBfQfSpmeUIyhes+uUR8+DbhpbxT/JgXqTQYOcnpkB+kfD2rYZ5S8FpT08AQ==')
+        ->toEqual('14BaHQ6okBJhRK9yOFEFK6jrEWG2ZeX2CPamLTdbq3v05fIIr1OG6Rx112GcJeZbfF6QforHBclIJ1EzdcFMIg==')
     ;
 });

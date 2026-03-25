@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 $base_url = 'https://domain.local/example';
 
@@ -9,8 +9,8 @@ $client = new CMI\CmiClient(new CMI\CmiPayment([
     'clientid' => '', // CLIENTID
     'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
     'shopurl' => $base_url, // SHOP URL FOR REDIRECTION
-    'okUrl' => $base_url . '/okFail.php', // REDIRECTION AFTER SUCCEFFUL PAYMENT
-    'failUrl' => $base_url . '/okFail.php', // REDIRECTION AFTER FAILED PAYMENT
+    'okUrl' => $base_url.'/okFail.php', // REDIRECTION AFTER SUCCEFFUL PAYMENT
+    'failUrl' => $base_url.'/okFail.php', // REDIRECTION AFTER FAILED PAYMENT
     'email' => 'mehdi.rochdi@gmail.com', // YOUR EMAIL APPEAR IN CMI PLATEFORM
     'BillToName' => 'mehdi rochdi', // YOUR NAME APPEAR IN CMI PLATEFORM
     'BillToCompany' => 'company name', // YOUR COMPANY NAME APPEAR IN CMI PLATEFORM
@@ -21,7 +21,7 @@ $client = new CMI\CmiClient(new CMI\CmiPayment([
     'BillToCountry' => '504', // YOUR COUNTRY APPEAR IN CMI PLATEFORM NOT REQUIRED (504=MA)
     'tel' => '0021201020304', // YOUR PHONE APPEAR IN CMI PLATEFORM NOT REQUIRED
     'amount' => $_POST['amount'], // RETRIEVE AMOUNT WITH METHOD POST
-    'CallbackURL' => $base_url . '/callback.php', // CALLBACK
+    'CallbackURL' => $base_url.'/callback.php', // CALLBACK
 ]));
 
 $cmiPage = new CMI\CmiPage($client);

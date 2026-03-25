@@ -9,8 +9,14 @@ use Throwable;
 
 class ValidationException extends Exception
 {
+    /**
+     * @var array<string, string>
+     */
     private array $errors;
 
+    /**
+     * @param array<string, string> $errors
+     */
     public function __construct(
         array $errors,
         string $message = 'Invalid CMI attributes',
@@ -22,6 +28,9 @@ class ValidationException extends Exception
         $this->errors = $errors;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getErrors(): array
     {
         return $this->errors;
