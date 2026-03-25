@@ -14,7 +14,8 @@ class Validator
     public function __construct(private readonly array $rules) {}
 
     /**
-     * @param array<string, string> $data
+     * @param array<string, mixed> $data
+     *
      * @return array<string, string>
      */
     public function validate(array $data): array
@@ -29,6 +30,7 @@ class Validator
                     if (is_string($rule)) {
                         $this->validateRule($rule, $value);
                     } elseif (is_array($rule)) {
+                        /** @var string $ruleName */
                         $ruleName = $rule[0];
                         $parameters = array_slice($rule, 1);
                         $this->validateRule($ruleName, $value, $parameters);

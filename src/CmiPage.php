@@ -24,7 +24,7 @@ class CmiPage
         $formInputs = '';
 
         foreach ($this->cmiClient->getCmiPayment()->getAttributes() as $name => $value) {
-            $formInputs .= sprintf('<input type="hidden" name="%s" value="%s">', $name, trim($value));
+            $formInputs .= sprintf('<input type="hidden" name="%s" value="%s">', $name, trim((string)$value));
         }
 
         return <<<HTML
