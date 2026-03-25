@@ -15,7 +15,6 @@ class Validator
 
     /**
      * @param array<string, mixed> $data
-     *
      * @return array<string, string>
      */
     public function validate(array $data): array
@@ -111,7 +110,7 @@ class Validator
     private function validateIn(mixed $value, array $haystack): void
     {
         if (! in_array($value, $haystack, true)) {
-            throw new InvalidArgumentException('value must one of this: ' . implode(',', $haystack));
+            throw new InvalidArgumentException('value must one of this: ' . implode(separator: ',', array: $haystack));
         }
     }
 

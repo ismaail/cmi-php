@@ -28,7 +28,7 @@ class CmiPage
         }
 
         return <<<HTML
-            <form name="redirectpost" method="post" action="{$url}">
+            <form name="redirectpost" method="post" action="$url">
                 {$formInputs}
             </form>
             <script>
