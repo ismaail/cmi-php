@@ -8,10 +8,8 @@ class CmiClient
 {
     /**
      * Default base URL for CMI's API
-     *
-     * @const string
      */
-    private const API_ENDPOINT = 'https://testpayment.cmi.co.ma';
+    private const string API_ENDPOINT = 'https://testpayment.cmi.co.ma';
 
     private CmiPayment $cmiPayment;
 

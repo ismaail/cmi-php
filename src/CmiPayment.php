@@ -19,7 +19,7 @@ class CmiPayment
      *
      * @const list<string>
      */
-    private const LANGS = ['ar', 'fr', 'en'];
+    private const array LANGS = ['ar', 'fr', 'en'];
 
     /**
      * @param array<string, string|float> $attributes
