@@ -19,6 +19,7 @@ You can install the bindings via [composer](https://getcomposer.org/). Run the f
 ```shell
 composer require ismaail/cmi-payment-php
 ```
+
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading)
 ```shell
 require_once('vendor/autoload.php');
@@ -32,15 +33,13 @@ require_once('vendor/autoload.php');
 
 Example amount text fields `example/formRequest.php`:
 
-```php
-...
-    <h1>Payment form CMI</h1>
-    <form method="post" action="/example/process.php">
-    <label for="amount">Amount</label>
-        <input type="text" name="amount" class="input-control" placeholder="put amount here 10.65" value="10.60"> DHS<br/>
-        <button type="submit">Buy</button>
-    </form>
-...
+```html
+<h1>Payment form CMI</h1>
+<form method="post" action="/example/process.php">
+<label for="amount">Amount</label>
+    <input type="text" name="amount" class="input-control" placeholder="put amount here 10.65" value="10.60"> DHS<br/>
+    <button type="submit">Buy</button>
+</form>
 ```
 Keeping mind that `storekey` and `clientid` are given by CMI, you should contact them **[cmi.co.ma](https://www.cmi.co.ma/fr/solutions-paiement-carte-paiement-ligne/ecommerce)**
 
@@ -93,7 +92,10 @@ $client = new Mehdirochdi\CMI\CmiClient([
     ...
     'AutoRedirect' => 'true',
 ]);
-OR
+
+
+// OR
+
 $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
 ```
