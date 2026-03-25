@@ -14,7 +14,7 @@ class Validator
     public function __construct(private readonly array $rules) {}
 
     /**
-     * @param array<string, string> $data
+     * @param array<string, mixed> $data
      * @return array<string, string>
      */
     public function validate(array $data): array
@@ -29,6 +29,7 @@ class Validator
                     if (is_string($rule)) {
                         $this->validateRule($rule, $value);
                     } elseif (is_array($rule)) {
+                        /** @var string $ruleName */
                         $ruleName = $rule[0];
                         $parameters = array_slice($rule, 1);
                         $this->validateRule($ruleName, $value, $parameters);
@@ -109,7 +110,7 @@ class Validator
     private function validateIn(mixed $value, array $haystack): void
     {
         if (! in_array($value, $haystack, true)) {
-            throw new InvalidArgumentException('value must one of this: ' . implode(',', $haystack));
+            throw new InvalidArgumentException('value must one of this: ' . implode(separator: ',', array: $haystack));
         }
     }
 

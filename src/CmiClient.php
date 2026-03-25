@@ -8,10 +8,8 @@ class CmiClient
 {
     /**
      * Default base URL for CMI's API
-     *
-     * @const string
      */
-    private const API_ENDPOINT = 'https://testpayment.cmi.co.ma';
+    private const string API_ENDPOINT = 'https://testpayment.cmi.co.ma';
 
     private CmiPayment $cmiPayment;
 
@@ -49,12 +47,12 @@ class CmiClient
                 continue;
             }
 
-            $paramValue = str_replace(['\\', '|'], ['\\\\', '\|'], trim($cmiParams[$paramKey]));
+            $paramValue = str_replace(['\\', '|'], ['\\\\', '\|'], trim((string)$cmiParams[$paramKey]));
             $hashval .= $paramValue . '|';
         }
 
         // Add Store Key
-        $hashval .= str_replace(['\\', '|'], ['\\\\', '\|'], $cmiParams['storekey']);
+        $hashval .= str_replace(['\\', '|'], ['\\\\', '\|'], (string)$cmiParams['storekey']);
 
         return base64_encode(pack('H*', hash('sha512', $hashval)));
     }
